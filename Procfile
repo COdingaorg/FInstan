@@ -1,0 +1,1 @@
+web: gunicorn finstan_app.wsgi --log-file -
