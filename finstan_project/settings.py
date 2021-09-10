@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'pinstagram.urls'
+ROOT_URLCONF = 'finstan_project.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'finstan_app.wsgi.application'
+WSGI_APPLICATION = 'finstan_project.wsgi.application'
 
 
 # Database
