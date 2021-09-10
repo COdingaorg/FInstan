@@ -1,1 +1,11 @@
-upload file
+{% load static %}
+<h4>{{title}}</h4>
+<h5>{{disclaimer}}</h5>
+<form action="{% url 'upload_file' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {{form2}}
+    {{form.as_p}}
+
+    <button type="submit" name="statement_upload">Submit </button>
+</form>

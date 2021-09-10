@@ -1,8 +1,7 @@
 from django import forms
 from .models import FileStat
 
-class FileUpload(forms.ModelForm):
+class FileStatement(forms.ModelForm):
     class Meta:
         model = FileStat
-        fields = ['__all__']
-        
+        fields = ['file_path']

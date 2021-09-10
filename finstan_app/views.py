@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from finstan_app.forms import FileStatement
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 # Create your views here.
 #view function to index page
@@ -20,13 +22,28 @@ def upload_file(request):
     '''
     title = 'Upload you statement'
     desclaimer = "Your statement are safe and only when uploaded"
+    form = FileStatement()
+    if request.method == 'POST' and 'statement_upload' in request.POST:
+        form = FileStatement(request.POST, request.FILES)
+        if form.is_valid():
+            if request.user:
+                form.user = request.user
+            else:
+                form.user = None
 
-    context = {
-        title:'title',
-        desclaimer :'disclaimer'
-    }
+            form.save()
+            messages.success(request, 'Upload successfull')
+            return redirect('report')
+        else:
+            messages.warning(request, 'Invalid Form')
+    else:
+        context = {
+            'title':title,
+            'disclaimer':desclaimer,
+            'form':form,
+            }
 
-    return render(request, 'all_templates/upload_file.html', context)
+        return render(request, 'all_templates/upload_file.html', context)
 
 #view function to view report
 def report(request):
